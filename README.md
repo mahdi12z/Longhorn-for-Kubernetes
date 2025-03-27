@@ -8,7 +8,7 @@ Developed by Rancher (SUSE), it enables highly available persistent volumes with
 
 
 
-#Key Features of Longhorn
+# Key Features of Longhorn
 ## Replication & High Availability
 Each volume can be replicated across multiple nodes. If a node fails, data remains available.
 
