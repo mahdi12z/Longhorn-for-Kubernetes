@@ -69,7 +69,8 @@ kubectl patch svc longhorn-frontend -n longhorn-system -p '{"spec": {"type": "No
 ```
 
 Then open in your browser:
-http://<NodeIP>:<NodePort>
+
+[http://<NodeIP>:<NodePort>](http://<NodeIP>:<NodePort>)
 
 # 3-Set Longhorn as Default StorageClass
 Ensure Longhorn is the default StorageClass by running:
