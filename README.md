@@ -71,6 +71,7 @@ kubectl patch svc longhorn-frontend -n longhorn-system -p '{"spec": {"type": "No
 Then open in your browser:
 ```bash
 kubectl get svc
+kubectl get svc longhorn-frontend -n longhorn-system
 ```
 ```bash
 http://<NodeIP>:<NodePort>
