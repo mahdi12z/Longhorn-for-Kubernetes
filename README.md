@@ -120,6 +120,10 @@ Deployments: longhorn-ui, longhorn-driver-deployer
 kubectl get pv -o custom-columns=NAME:.metadata.name,CLAIM:.spec.claimRef.name,NAMESPACE:.spec.claimRef.namespace,RECLAIM_POLICY:.spec.persistentVolumeReclaimPolicy
 ```
 
+```bash
+kubectl get storageclass
+```
+
 CRDs: volumes, replicas, engines, settings, backups, etc.
 StorageClass: longhorn (default)
 CSI components: provisioner, attacher, resizer, snapshotter
