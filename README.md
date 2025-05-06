@@ -72,7 +72,7 @@ allowVolumeExpansion: true
 ```
 
 
-
+change to
 ```bash
 reclaimPolicy: Retain
 
