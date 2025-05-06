@@ -48,7 +48,34 @@ DaemonSet for Longhorn Manager should run on all nodes.
 # 1-Installation Steps 
 1.Apply the Longhorn deployment manifest:
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.8.1/deploy/longhorn.yaml
+wget https://raw.githubusercontent.com/longhorn/longhorn/v1.8.1/deploy/longhorn.yaml -O longhorn-retain.yaml
+```
+```bash
+vi longhorn-retain.yaml
+```
+search
+```bash
+kind: StorageClass
+````
+```bash
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: longhorn
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: driver.longhorn.io
+reclaimPolicy: Delete     #change
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+
+```
+
+
+
+```bash
+reclaimPolicy: Retain
+
 
 ```
 2.Monitor installation progress:
