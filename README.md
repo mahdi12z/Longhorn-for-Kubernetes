@@ -114,6 +114,12 @@ kubectl patch storageclass longhorn -p '{"metadata": {"annotations":{"storagecla
 Namespace: longhorn-system
 DaemonSet: longhorn-manager
 Deployments: longhorn-ui, longhorn-driver-deployer
+
+
+```bash
+kubectl get pv -o custom-columns=NAME:.metadata.name,CLAIM:.spec.claimRef.name,NAMESPACE:.spec.claimRef.namespace,RECLAIM_POLICY:.spec.persistentVolumeReclaimPolicy
+```
+
 CRDs: volumes, replicas, engines, settings, backups, etc.
 StorageClass: longhorn (default)
 CSI components: provisioner, attacher, resizer, snapshotter
