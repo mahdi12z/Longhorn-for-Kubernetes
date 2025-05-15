@@ -75,8 +75,10 @@ allowVolumeExpansion: true
 change to
 ```bash
 reclaimPolicy: Retain
-
-
+```
+kubectl apply:
+```bash
+kubectl apply -f longhorn-retain.yaml
 ```
 2.Monitor installation progress:
 ```bash
