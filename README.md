@@ -130,5 +130,88 @@ CRDs: volumes, replicas, engines, settings, backups, etc.
 StorageClass: longhorn (default)
 CSI components: provisioner, attacher, resizer, snapshotter
 
+### Export the Existing StorageClass YAML
+
+Export the StorageClass you want to modify:
+
+```bash
+
+
+
+kubectl get storageclass longhorn-static -o yaml > sc-longhorn-static.yaml
+```
+---
+
+### 3️⃣ Edit the YAML File
+
+Open `sc-longhorn-static.yaml` in your favorite editor and locate:
+
+```bash
+
+
+
+reclaimPolicy: Delete
+```
+Change it to:
+```bash
+
+
+reclaimPolicy: Retain
+```
+---
+
+### 4️⃣ Delete the Existing StorageClass
+
+> ⚠️ This only removes the StorageClass definition. It **does not affect** existing PVCs or PVs.
+
+```bash
+
+
+
+kubectl delete storageclass longhorn-static
+```
+---
+
+### 5️⃣ Recreate the StorageClass with the New Policy
+
+Apply the modified YAML file:
+
+```bash
+
+
+
+kubectl apply -f sc-longhorn-static.yaml
+```
+---
+
+### 6️⃣ Verify the Changes
+
+```bash
+
+
+
+kubectl get storageclass
+```
+You should now see:
+
+```bash
+
+
+
+`NAME                 PROVISIONER          RECLAIMPOLICY   ... longhorn-static      driver.longhorn.io   Retain`
+```
+---
+
+## ✅ Result
+
+Now, when a PVC using this StorageClass is deleted, its backing volume will **not** be deleted. This is useful for:
+
+- Disaster recovery
+    
+- Manual cleanup
+    
+- Backing up or reattaching volumes
+
+
 
 link :https://longhorn.io/docs/1.8.1/deploy/install/install-with-kubectl/
